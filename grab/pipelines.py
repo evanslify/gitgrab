@@ -59,8 +59,7 @@ class NFSPipeline(FilesPipeline):
     def check_nfs(self):
         command = shlex.split('showmount -d %s --no-headers' % self.ip)
         if call_timeout(command, 10):
-            self.check_dir()
-            return
+            return self.check_dir()
 
     def check_if_mount(self):
         if not os.path.ismount(self.store_dir):
